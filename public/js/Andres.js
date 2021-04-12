@@ -12,26 +12,26 @@ function calcular(){
         this.valYkr4=valYkr4;
     }
     if(valorh!=0 && interacciones != 0){
-            var Xo = 0;
-            var Yo = 0.5;
-            var Yok = 0.5;
+            var Xo = 1;
+            var Yo = 0;
+            var Yok = 0;
 
             for(var repeticiones=0;repeticiones < interacciones;repeticiones++){
                 if(repeticiones==0){
-                    Xo=0;
-                    valor1=0.5;
-                    valor=0.5;
-                    valorYok=0.5;
+                    Xo=1;
+                    valor1=0;
+                    valor=0;
+                    valorYok=0;
                     resultados = new objetos(Xo.toFixed(4),valor1.toFixed(4),valor.toFixed(4),valorYok.toFixed(4));                                        
                 }else{
                 var valor1;
-                /*Metodo de Euler*/valor1=Yo+(valorh*((Xo-Yo)**2));
+                /*Metodo de Euler*/valor1=Yo+(valorh*((Yo/Xo)+2));
                 var Xi; 
                 Xi = Xo + valorh;
                 var Yi;
                 Yi = valor1;
                 var valor;    
-                /*Metodo de Euler mejorado*/valor = Yo + (valorh / 2)*(((Xo - Yo)**2)+((Xi - Yi)**2));
+                /*Metodo de Euler mejorado*/valor = Yo + (valorh / 2)*(((Yo/Xo)+2)+((Yi/Xi)+2));
                 
                 var k1;
                 k1 = ((Xo - Yok)**2);
@@ -47,7 +47,7 @@ function calcular(){
                 console.log(Yk1h2);
                 //optener valor de k2///
                 var k2;
-                k2 = ((Xh1 - Yk1h2)**2);
+                k2 = ((Yk1h2/Xh1)+2);
                 console.log(k2);
 
                 
@@ -57,7 +57,7 @@ function calcular(){
                 console.log(YK2h2);
 
                 var k3;
-                k3 = ((Xh1 - YK2h2)**2); 
+                k3 = ((YK2h2/Xh1)+2); 
                 console.log(k3);
 
                 //optener valor de x+h///
@@ -72,7 +72,7 @@ function calcular(){
 
                 //optener valor K4///
                 var k4;
-                k4 = ((Xh - Yk3h)**2);
+                k4 = ((Yk3h/Xh)+2);
                 console.log(k4);
 
                 //optener valor de Yok;
